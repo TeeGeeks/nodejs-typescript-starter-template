@@ -129,6 +129,7 @@ export async function createSection(
         classId: data.classId, // Ensure this is included
         createdAt: new Date(),
         updatedAt: new Date(),
+        schoolId: "",
       },
     });
 

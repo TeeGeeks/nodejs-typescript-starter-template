@@ -38,6 +38,8 @@ export type ContactProps = {
 export type ClassProps = {
   title: string;
   slug: string;
+  schoolId: string;
+  userId: string;
 };
 
 export type SectionProps = {
@@ -63,6 +65,8 @@ export type ParentProps = {
   occupation: string;
   address: string;
   parentImgUrl: string;
+  schoolId: string;
+  userId: string;
 };
 export type studentProps = {
   name: string;
@@ -88,12 +92,16 @@ export type studentProps = {
   admissionDate: Date;
   address: string;
   imgUrl: string;
+  schoolId: string;
+  userId: string;
 };
 export interface DepartmentProps {
   name: string;
   slug: string;
   budget?: number;
   budgetYear?: string;
+  schoolId: string;
+  userId: string;
 }
 export type SubjectProps = {
   slug: string;
@@ -104,6 +112,8 @@ export type SubjectProps = {
   type: string;
   departmentId: string;
   departmentName: string;
+  schoolId: string;
+  userId: string;
 };
 
 export type TeacherProps = {
@@ -128,4 +138,6 @@ export type TeacherProps = {
   password: string; // String
   address?: string; // Optional String
   imageUrl?: string; // Optional String
+  schoolId: string;
+  userId: string;
 };

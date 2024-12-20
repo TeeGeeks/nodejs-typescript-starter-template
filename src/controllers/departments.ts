@@ -36,6 +36,7 @@ export async function createDepartment(
         slug: slug,
         budget: data.budget,
         budgetYear: data.budgetYear,
+        schoolId: "",
       },
     });
 

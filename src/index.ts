@@ -23,11 +23,11 @@ app.listen(PORT, () => {
 });
 
 app.use("/api/v1", userRouter);
-// app.use("/api/v1", schoolRouter);
-// app.use("/api/v1", classRouter);
-// app.use("/api/v1", adminRouter);
-// app.use("/api/v1", parentRouter);
-// app.use("/api/v1", studentRouter);
-// app.use("/api/v1", departmentRouter);
-// app.use("/api/v1", subjectRouter);
-// app.use("/api/v1", teacherRouter);
+app.use("/api/v1", schoolRouter);
+app.use("/api/v1", classRouter);
+app.use("/api/v1", adminRouter);
+app.use("/api/v1", parentRouter);
+app.use("/api/v1", studentRouter);
+app.use("/api/v1", departmentRouter);
+app.use("/api/v1", subjectRouter);
+app.use("/api/v1", teacherRouter);
