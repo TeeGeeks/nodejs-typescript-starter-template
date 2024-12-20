@@ -127,7 +127,7 @@ type AllocationRequestBody = {
 };
 
 export async function allocateSubjectsToTeacher(req: Request, res: Response) {
-  const { teacherId, allocations }: AllocationRequestBody = req.body;
+  const { teacherId, allocations, schoolId }: AllocationRequestBody = req.body;
 
   try {
     // Validate the teacher exists
@@ -203,8 +203,8 @@ export async function allocateSubjectsToTeacher(req: Request, res: Response) {
           subjectName: subject.name,
           className: classInfo?.title || "",
           sectionName: sectionInfo?.title || "",
-          schoolId: "",
-          //userId: ""
+          schoolId,
+          //userId
         },
       });
 
