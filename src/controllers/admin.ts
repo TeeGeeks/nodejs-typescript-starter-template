@@ -27,15 +27,14 @@ export async function createContact(
     if (existingEmail || existingSchool) {
       return res.status(409).json({
         data: null,
-        error: "A contact with this email or school already exists",
+        error: "A contact with this email or school already exists!",
       });
     }
 
     // Create new contact
     const newContact = await db.contact.create({ data });
 
-    console.log(`Contact created successfully`);
-
+    console.log(`Contact created successfully!`);
     return res.status(201).json({
       data: newContact,
       error: null,
