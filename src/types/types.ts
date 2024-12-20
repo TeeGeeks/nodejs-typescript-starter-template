@@ -39,13 +39,13 @@ export type ClassProps = {
   title: string;
   slug: string;
   schoolId: string;
-  userId: string;
 };
 
 export type SectionProps = {
   title: string;
   slug: string;
   classId: string; // Foreign key to Class
+  schoolId: string;
 };
 
 export type ParentProps = {
@@ -101,7 +101,6 @@ export interface DepartmentProps {
   budget?: number;
   budgetYear?: string;
   schoolId: string;
-  userId: string;
 }
 export type SubjectProps = {
   slug: string;
@@ -113,7 +112,6 @@ export type SubjectProps = {
   departmentId: string;
   departmentName: string;
   schoolId: string;
-  userId: string;
 };
 
 export type TeacherProps = {

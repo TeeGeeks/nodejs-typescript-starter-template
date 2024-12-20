@@ -123,7 +123,6 @@ type AllocationRequestBody = {
     sectionId: string; // section (e.g., "A")
   }[];
   schoolId: string;
-  userId: string;
 };
 
 export async function allocateSubjectsToTeacher(req: Request, res: Response) {
@@ -204,7 +203,6 @@ export async function allocateSubjectsToTeacher(req: Request, res: Response) {
           className: classInfo?.title || "",
           sectionName: sectionInfo?.title || "",
           schoolId,
-          //userId
         },
       });
 

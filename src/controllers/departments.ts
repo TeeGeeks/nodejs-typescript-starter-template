@@ -10,6 +10,7 @@ export async function createDepartment(
   res: Response
 ) {
   const data = req.body;
+  const { schoolId } = data;
 
   // const slug = generateSlug(data.name);
   const slug = data.name;
@@ -36,7 +37,7 @@ export async function createDepartment(
         slug: slug,
         budget: data.budget,
         budgetYear: data.budgetYear,
-        schoolId: "",
+        schoolId,
       },
     });
 

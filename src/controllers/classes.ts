@@ -102,6 +102,7 @@ export async function createSection(
   res: Response
 ) {
   const data = req.body;
+  const { schoolId } = data;
 
   const slug = generateSlug(data.title);
   data.slug = slug;
@@ -129,7 +130,7 @@ export async function createSection(
         classId: data.classId, // Ensure this is included
         createdAt: new Date(),
         updatedAt: new Date(),
-        schoolId: "",
+        schoolId,
       },
     });
 
