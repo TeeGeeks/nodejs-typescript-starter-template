@@ -13,7 +13,16 @@ require("dotenv").config();
 const cors = require("cors");
 const app = express();
 
-app.use(cors());
+// app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://school-pro-web-one.vercel.app", // Add your production domain
+    ],
+    credentials: true, // Important for cookies
+  })
+);
 
 const PORT = process.env.PORT || 8000;
 
