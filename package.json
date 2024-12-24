@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsnd --respawn -r tsconfig-paths/register --pretty --transpile-only ./src/index.ts",
-    "build": "tsc && tsc-alias",
+    "build": "tsc && tsc-alias && cp -r static/* public/",
     "start": "node ./dist",
     "postinstall": "prisma generate"
   },
