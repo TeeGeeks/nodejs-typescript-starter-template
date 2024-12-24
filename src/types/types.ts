@@ -66,6 +66,7 @@ export type ParentProps = {
   address: string;
   parentImgUrl: string;
   schoolId: string;
+  schoolName: string;
   userId: string;
 };
 export type studentProps = {
@@ -93,6 +94,7 @@ export type studentProps = {
   address: string;
   imgUrl: string;
   schoolId: string;
+  schoolName: string;
   userId: string;
 };
 export interface DepartmentProps {
@@ -137,5 +139,6 @@ export type TeacherProps = {
   address?: string; // Optional String
   imageUrl?: string; // Optional String
   schoolId: string;
+  schoolName: string;
   userId: string;
 };

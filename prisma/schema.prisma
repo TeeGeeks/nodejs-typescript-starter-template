@@ -145,7 +145,7 @@ model Parent {
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @unique
-
+  schoolName String
   schoolId  String // Foreign key to School
   school    School    @relation(fields: [schoolId], references: [id], onDelete: Cascade) // Cascade on delete
   students  Student[] // One-to-many relationship: Parent to Students
@@ -189,7 +189,7 @@ model Student {
   section  Section @relation(fields: [sectionId], references: [id], onDelete: Cascade) // Cascade on delete
   school   School  @relation(fields: [schoolId], references: [id], onDelete: Cascade) // Cascade on delete
   schoolId String
-
+  schoolName String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @unique
 
@@ -284,6 +284,7 @@ model Teacher {
   subjects   Subject[] @relation("TeacherSubject")
   school     School    @relation(fields: [schoolId], references: [id], onDelete: Cascade) // Cascade on delete
   schoolId   String
+  schoolName String
   user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String    @unique
 

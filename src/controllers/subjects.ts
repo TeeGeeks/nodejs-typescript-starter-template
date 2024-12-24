@@ -5,6 +5,12 @@ import { TypedRequestBody, SubjectProps } from "../types/types";
 
 const prisma = new PrismaClient();
 
+interface GetSubjectsRequest extends Express.Request {
+  params: {
+    schoolId: string;
+  };
+}
+
 export async function createSubject(
   req: TypedRequestBody<SubjectProps>,
   res: Response
@@ -65,12 +71,45 @@ export async function getSubjects(req: TypedRequestBody<{}>, res: Response) {
     });
   }
 }
-export async function getBriefSubjects(
-  req: TypedRequestBody<{}>,
+export async function getSubjectsBySchoolId(
+  req: GetSubjectsRequest,
   res: Response
 ) {
+  const { schoolId } = req.params;
+
+  if (!schoolId) {
+    return res.status(400).json({
+      error: "School ID is required",
+    });
+  }
+
   try {
     const subjects = await prisma.subject.findMany({
+      where: {
+        schoolId,
+      },
+      orderBy: {
+        createdAt: "asc",
+      },
+    });
+
+    return res.status(200).json(subjects);
+  } catch (error) {
+    console.error("Error retrieving subjects:", error);
+    return res.status(500).json({
+      data: null,
+      error: "An unexpected error occurred while retrieving subjects",
+    });
+  }
+}
+
+export async function getBriefSubjects(req: GetSubjectsRequest, res: Response) {
+  const { schoolId } = req.params;
+  try {
+    const subjects = await prisma.subject.findMany({
+      where: {
+        schoolId,
+      },
       orderBy: {
         createdAt: "desc",
       },

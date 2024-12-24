@@ -97,6 +97,59 @@ export async function getClasses(
     });
   }
 }
+
+export async function getClassesBySchoolId(
+  req: TypedRequestBody<ClassProps>,
+  res: Response
+) {
+  const { schoolId } = req.params;
+  try {
+    const classes = await db.class.findMany({
+      orderBy: {
+        title: "asc",
+      },
+      where: {
+        schoolId,
+      },
+      include: {
+        sections: {
+          include: {
+            students: true,
+            _count: {
+              select: {
+                students: true,
+              },
+            },
+          },
+        },
+        students: true,
+        _count: {
+          select: {
+            students: true,
+          },
+        },
+      },
+    });
+
+    const classesWithCounts = classes.map((cls) => ({
+      ...cls,
+      studentCount: cls._count.students,
+      sections: cls.sections.map((section) => ({
+        ...section,
+        studentCount: section._count.students,
+      })),
+    }));
+
+    return res.status(200).json(classesWithCounts);
+  } catch (error) {
+    console.error("Error retrieving classes:", error);
+    return res.status(500).json({
+      data: null,
+      error: "An unexpected error occurred",
+    });
+  }
+}
+
 export async function createSection(
   req: TypedRequestBody<SectionProps>,
   res: Response
@@ -156,7 +209,7 @@ export async function getSections(
   try {
     const sections = await db.section.findMany({
       orderBy: {
-        title: "asc",
+        title: "desc",
       },
     });
 

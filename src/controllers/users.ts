@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import {
@@ -11,6 +11,7 @@ import {
   generateRefreshToken,
   TokenPayload,
 } from "@/utils/tokens";
+import { db } from "@/db/db";
 
 const prisma = new PrismaClient();
 
@@ -178,3 +179,22 @@ export async function loginUser(
 //     });
 //   }
 // }
+
+export async function getAllUsers(req: Request, res: Response) {
+  try {
+    const users = await db.user.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        phone: true,
+      },
+    });
+    return res.status(200).json(users);
+  } catch (error) {
+    console.log(error);
+  }
+}

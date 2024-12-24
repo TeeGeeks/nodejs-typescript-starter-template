@@ -74,14 +74,43 @@ export async function getDepartments(req: TypedRequestBody<{}>, res: Response) {
     });
   }
 }
+export async function getDepartmentBySchoolId(
+  req: TypedRequestBody<{}>,
+  res: Response
+) {
+  try {
+    const { schoolId } = req.params;
+    const departments = await prisma.department.findMany({
+      where: {
+        schoolId,
+      },
+      include: {
+        teachers: true,
+        subjects: true,
+      },
+    });
+
+    return res.status(200).json(departments);
+  } catch (error) {
+    console.error("Error retrieving departments:", error);
+    return res.status(500).json({
+      data: null,
+      error: "An unexpected error occurred",
+    });
+  }
+}
 export async function getBriefDepartments(
   req: TypedRequestBody<{}>,
   res: Response
 ) {
   try {
+    const { schoolId } = req.params;
     const departments = await prisma.department.findMany({
       orderBy: {
         createdAt: "desc",
+      },
+      where: {
+        schoolId,
       },
       select: {
         id: true,
